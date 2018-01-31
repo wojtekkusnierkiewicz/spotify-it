@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import SingleArtist from './components/artist.jsx';
 
 require('../style/main.scss');
-const token = 'BQBtq9mQoZMWOP8dX7HX9BgXXkkPnmhmShA9aYEaQn0zUetZ-ed8nY-821UF_dpSKXFbxQGTJmUY5_R1GWM3vf2ecnKmCiy8wX9oCWa8F8zGfnvgCKZMg7YhxZGNSuDOhbb3bmlY9vB5m38LzKfiB7wD2w';
+const token = 'BQCnkcHtorLNOSqBnD367BfwTaX7DoUGxyvJnnaTDjDFNUp-zN2j8autG_s1DlDKZWYrWsdLxhOArzTCUN3mFobk37-TZNSi0Yps76KemPqQGICDUJwhnIRKntMfAp1kPaBjuorDikN66vBJgxD3bb4kgQ';
 const BASE_URL = 'https://api.spotify.com/v1/search?';
 const options = {
   method: 'GET',
