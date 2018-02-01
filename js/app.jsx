@@ -2,9 +2,10 @@ import Spotify from 'spotify-web-api-js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SingleArtist from './components/artist.jsx';
+import SingleAlbum from './components/albums.jsx';
 
 require('../style/main.scss');
-const token = 'BQCnkcHtorLNOSqBnD367BfwTaX7DoUGxyvJnnaTDjDFNUp-zN2j8autG_s1DlDKZWYrWsdLxhOArzTCUN3mFobk37-TZNSi0Yps76KemPqQGICDUJwhnIRKntMfAp1kPaBjuorDikN66vBJgxD3bb4kgQ';
+const token = 'BQCqfffNjkzRKUfliHFM0hzWfigXIQteoNwP5Dx6ODrNyNAv9nlfllhvpsvoVAdtus82SMOa3DjAIwki6x6UBJUSHLsj9LK4RT4_ahKc90AZxqePx6id-nswmSPH17La40D-e1HFSTgImdf6ut8G6SCHTg';
 const BASE_URL = 'https://api.spotify.com/v1/search?';
 const options = {
   method: 'GET',
@@ -20,13 +21,16 @@ class App extends React.Component {
     super();
     this.state = {
       isData: false,
-      data: [],
-      text: ''
+      artists: [],
+      text: 'niemagotu',
+      id:'',
+      albums:[],
+      tracks:[]
     };
   }
 
-  getData = () => {
-    let ARTIST_URL = BASE_URL + 'q=' + this.state.text + '&type=artist';
+  getArtists = () => {
+    let ARTIST_URL = BASE_URL + 'q=' + this.state.text + '&type=artist&limit=5 ';
     fetch(ARTIST_URL, options).then(response => {
       if (response && response.ok) {
         return response.json();
@@ -34,14 +38,42 @@ class App extends React.Component {
         console.log('err');
       }
     }).then(data => {
-      console.log(data.artists.items);
-      this.setState({isData: true, data: data.artists.items})
+      this.setState({isData: true, artists: data.artists.items})
+      // this.state.artists.map(value=>{this.state.ids.push(value.id)})
+      // // this.state.ids.map(value=>{this.getAlbums(value)});
     })
   }
+  // getAlbums = (artist) => {
+  //   let ALBUMS = ALBUMS_URL + artist + '/albums';
+  //   fetch(ALBUMS, options).then(response => {
+  //     if (response && response.ok) {
+  //       return response.json();
+  //     } else {
+  //       console.log('err');
+  //     }
+  //   }).then(data => {
+  //     data.items.map(value=>{this.state.albums.push(value.id)})
+  //     this.state.albums.map(value=>{this.getTracks(value)});
+  //   })
+  // }
+  //
+  // getTracks = (album) => {
+  //   let TRACKS = TRACKS_URL + album + '/tracks';
+  //   fetch(TRACKS, options).then(response => {
+  //     if (response && response.ok) {
+  //       return response.json();
+  //     } else {
+  //       console.log('err');
+  //     }
+  //   }).then(data => {
+  //     data.items.map(value=>{this.state.tracks.push(value.id)})
+  //     // this.setState({true, tracks: data.artists.items})
+  //   })
+  // }
 
   request = (event) => {
     event.preventDefault();
-    this.getData();
+    this.getArtists();
   }
 
   textChange = (event) => {
@@ -50,8 +82,8 @@ class App extends React.Component {
     });
   }
 
+
   render() {
-    let artists = this.state.data;
     return (
       <div>
         <form>
@@ -60,11 +92,14 @@ class App extends React.Component {
         </form>
         <div>
           {
-            artists.map((value, index) => {
+            this.state.artists.map((value, index) => {
               return(
-                <SingleArtist data={value.images[0]}
+                <SingleArtist artist={value}
                               key={value.id}
-                              index={value.index}/>
+                              index={value.index}
+                              token={token}
+                              options={options}
+                />
               )
             })
           }
