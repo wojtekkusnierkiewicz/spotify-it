@@ -5,7 +5,7 @@ import SingleArtist from './components/artist.jsx';
 import SingleAlbum from './components/albums.jsx';
 
 require('../style/main.scss');
-const token = 'BQCqfffNjkzRKUfliHFM0hzWfigXIQteoNwP5Dx6ODrNyNAv9nlfllhvpsvoVAdtus82SMOa3DjAIwki6x6UBJUSHLsj9LK4RT4_ahKc90AZxqePx6id-nswmSPH17La40D-e1HFSTgImdf6ut8G6SCHTg';
+const token = 'QWoasukhaoqLIasfasiojQASjlljahsuashfkasaawoijOJNFALOmlijliSFILjljAUIQMLfJIQMolfJLNQIFlkfjKJALJAFSNKSJLKJFAASFKLASJHFLAlkhKKknflkjiFNiojq9asfasfiqic3jasfw7';
 const BASE_URL = 'https://api.spotify.com/v1/search?';
 const options = {
   method: 'GET',
